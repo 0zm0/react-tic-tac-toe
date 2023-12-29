@@ -1,45 +1,19 @@
-export default function GameBoard() {
+export default function GameBoard({ onSelectedSquare, board }) {
     return (
         <ol id="game-board">
-            <li>
-                <ol>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                </ol>
-            </li>
-            <li>
-                <ol>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                </ol>
-            </li>
-            <li>
-                <ol>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
-                </ol>
-            </li>
+            {board.map((row, rowIndex) => (
+                <li key={rowIndex}>
+                    <ol>
+                        {row.map((col, colIndex) => (
+                            <li key={colIndex}>
+                                <button onClick={() => onSelectedSquare(rowIndex, colIndex)} disabled={col !== null}>
+                                    {col}
+                                </button>
+                            </li>
+                        ))}
+                    </ol>
+                </li>
+            ))}
         </ol>
     )
 }
